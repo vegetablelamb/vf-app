@@ -1,2 +1,2 @@
-{"id":0,"question":{"text":"fruit?","times":1},"answers":[{"text":"banana","times":1,"selected":true},{"text":"apple","times":0}]}
-{"id":1,"question":{"text":"Favourite Tree?","times":0},"answers":[{"text":"Beech","times":0},{"text":"Oak","times":0},{"text":"Fir","times":0},{"text":"Family","times":0}]}
+{"id":0,"question":{"text":"fruit?","times":2},"answers":[{"text":"banana","times":1,"selected":true},{"text":"apple","times":1,"selected":true}]}
+{"id":1,"question":{"text":"Favourite Tree?","times":2},"answers":[{"text":"Beech","times":0},{"text":"Oak","times":1,"selected":true},{"text":"Fir","times":1,"selected":true},{"text":"Family","times":0}]}

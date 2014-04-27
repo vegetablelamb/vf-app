@@ -1,0 +1,15 @@
+{
+  "name": "myapp",
+  "description": "a really cool app",
+  "version": "0.0.1",
+  "repository" : { 
+      "type" : "git", 
+      "url" : "https://github.com/vegetablelamb/vf-app.git"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "devDependencies": {
+    "socket.io": "~0.9.16"
+  }
+}

@@ -1,14 +1,16 @@
 var http = require("http"),
     url = require("url"),
     path = require("path"),
-    fs = require("fs")
+    fs = require("fs"),
+    //port = process.env.PORT || 8888;
     port = process.argv[2] || 8888;
 var app = require('http').createServer(function(request, response) {
  
   var uri = url.parse(request.url).pathname
     , filename = path.join(__dirname, "/../", uri);
   
-  path.exists(filename, function(exists) {
+  //path.exists(filename, function(exists) {
+  fs.exists(filename, function(exists) {
     if(!exists) {
       response.writeHead(404, {"Content-Type": "text/plain"});
       response.write("404 Not Found\n");
@@ -35,7 +37,8 @@ var app = require('http').createServer(function(request, response) {
 io = require('socket.io').listen(app), 
 fs = require('fs');
 
-app.listen(4000);
+//app.listen(4000);
+app.listen(process.env.PORT, process.env.IP);
 
 io.sockets.on('connection', function (socket) {
 	socket.on('newQuestion', function (data) {

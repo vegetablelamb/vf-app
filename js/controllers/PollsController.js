@@ -27,7 +27,10 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
     }
 
     $scope.isPollAnswered = function(poll) {
-        return $scope.answeredQuestions[poll.id] ? true : false;
+        
+        var cookie = ipCookie('answered');
+        return cookie[poll.id] ? true : false;
+        //return $scope.answeredQuestions[poll.id] ? true : false;
     }
 
     $scope.selectAnswer = function(poll, answer) {

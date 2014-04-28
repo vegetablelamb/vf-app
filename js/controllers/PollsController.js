@@ -39,7 +39,7 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
         }
         answer.times++;
         poll.question.times++;
-        console.log(answer);
+        //console.log(answer);
         //answer.selected = true;
         $scope.updateAnswerCookie(poll, answer);
         $scope.updateCookie(poll);
@@ -54,7 +54,7 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
         ipCookie('answered', JSON.stringify(cookie), {expires: 99});
 
         $scope.refresh();
-        console.log('ipCookie.answered',ipCookie('answered'));
+        //console.log('ipCookie.answered',ipCookie('answered'));
     }
 
     $scope.updateCookie = function(poll) {

@@ -1,14 +1,17 @@
 pollingApp.controller('PollsController', function($window, $rootScope, $scope, $state, ipCookie) {
-    
+
     $scope.polls                = [];
     $scope.answeredQuestions    = {};
 
     socket.emit('questionsRequest');
 
+    //Ensure the cookies exist
     $scope.generateCookie = function() {
+        //Has a poll been answered?
         if(!ipCookie('answeredPolls')){
             ipCookie('answeredPolls', '{}');
         }
+        //Which answer was selected?
         if(!ipCookie('answered')){
             ipCookie('answered', '{}');
         }
@@ -27,7 +30,7 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
     }
 
     $scope.isPollAnswered = function(poll) {
-        
+
         var cookie = ipCookie('answered');
         return cookie[poll.id] ? true : false;
         //return $scope.answeredQuestions[poll.id] ? true : false;
@@ -39,10 +42,7 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
         }
         answer.times++;
         poll.question.times++;
-        console.log(answer);
         answer.selected = true;
-        $scope.updateAnswerCookie(poll, answer);
-        $scope.updateCookie(poll);
         socket.emit('pollUpdate', poll);
     }
 
@@ -54,23 +54,15 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
         ipCookie('answered', JSON.stringify(cookie), {expires: 99});
 
         $scope.refresh();
-        console.log('ipCookie.answered',ipCookie('answered'));
     }
 
     $scope.updateCookie = function(poll) {
         var cookie = ipCookie('answeredPolls');
-        // if (cookie && JSON.stringify(cookie) !== '{}') {
-        //     cookie = JSON.parse(JSON.stringify(cookie));
-        //     //cookie = JSON.parse(cookie);
-        // }else cookie = {};
-
 
         cookie[poll.id] = 'answered';
 
         ipCookie('answeredPolls', JSON.stringify(cookie), {expires: 99});
-        console.log('ipCookie',ipCookie('answeredPolls'));
         $scope.refresh();
-        console.log('ipCookie',ipCookie('answeredPolls'));
     }
 
     $scope.submitQuestion = function(form) {
@@ -78,7 +70,7 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
 
         for (answer in form.answers) {
             form.answers[answer].times = 0;
-        } 
+        }
 
         socket.emit('newQuestion', {
             'id': $scope.polls.length,
@@ -87,8 +79,8 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
                 'times': 0
             },
             'answers': form.answers
-        }); 
-    } 
+        });
+    }
 
     $scope.$on('$destroy', function (event) {
         socket.removeAllListeners();
@@ -113,28 +105,19 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
                 if (data[poll]) {
                     if (data[poll].length > 0) {
                         data[poll] = JSON.parse(data[poll]);
-                        // $scope.polls.unshift(data[poll]);
-                        console.log(data[poll].id);
-                        console.log(data[poll].answers);
+
                         var qId = data[poll].id;
                         for (var i = 0; i < data[poll].answers.length; i++) {
-                            console.log(qId, data[poll].answers[i].text);
-                            console.log(cookie);
+                            //Add the answer to the cookie
                             if(cookie[qId] === data[poll].answers[i].text){
-                                    console.info('FOUND', data[poll]);
-                                    data[poll].answers[i].selectedLocal = true;
-                                    console.info(data[poll].answers[i].selectedLocal);
+                                data[poll].answers[i].selectedLocal = true;
                             }
-                            // if(cookie[]){
-
-                            // }
                         }
                         $scope.polls.unshift(data[poll]);
 
                     }
                 }
             }
-            console.log($scope.polls);
         });
     });
 

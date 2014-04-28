@@ -121,9 +121,9 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
                             //console.log(qId, data[poll].answers[i].text);
                             //console.log(cookie);
                             if(cookie[qId] === data[poll].answers[i].text){
-                                    console.info('FOUND', data[poll]);
+                                    //console.info('FOUND', data[poll]);
                                     data[poll].answers[i].selectedLocal = true;
-                                    console.info(data[poll].answers[i].selectedLocal);
+                                    //console.info(data[poll].answers[i].selectedLocal);
                             }
                             // if(cookie[]){
 

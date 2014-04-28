@@ -114,8 +114,8 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
                     if (data[poll].length > 0) {
                         data[poll] = JSON.parse(data[poll]);
                         // $scope.polls.unshift(data[poll]);
-                        console.log(data[poll].id);
-                        console.log(data[poll].answers);
+                        //console.log(data[poll].id);
+                        //console.log(data[poll].answers);
                         var qId = data[poll].id;
                         for (var i = 0; i < data[poll].answers.length; i++) {
                             //console.log(qId, data[poll].answers[i].text);

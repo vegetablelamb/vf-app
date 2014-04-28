@@ -68,9 +68,9 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
         cookie[poll.id] = 'answered';
 
         ipCookie('answeredPolls', JSON.stringify(cookie), {expires: 99});
-        console.log('ipCookie',ipCookie('answeredPolls'));
+        //console.log('ipCookie',ipCookie('answeredPolls'));
         $scope.refresh();
-        console.log('ipCookie',ipCookie('answeredPolls'));
+        //console.log('ipCookie',ipCookie('answeredPolls'));
     }
 
     $scope.submitQuestion = function(form) {
@@ -134,7 +134,7 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
                     }
                 }
             }
-            console.log($scope.polls);
+            //console.log($scope.polls);
         });
     });
 

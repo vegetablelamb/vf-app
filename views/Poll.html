@@ -8,7 +8,7 @@
 				You have already answered this poll.
 			</p>
 			<div class="list-group">
-				<a class="list-group-item" data-ng-class="{'active': answer.selected}" data-ng-click="selectAnswer(poll, answer)" data-ng-repeat="answer in poll.answers track by $index"> {{ answer.text }}</a>
+				<a class="list-group-item" data-ng-class="{'active': answer.selectedLocal}" data-ng-click="selectAnswer(poll, answer)" data-ng-repeat="answer in poll.answers track by $index"> {{ answer.text }}</a>
 			</div>
 		</div>
 	</div>	

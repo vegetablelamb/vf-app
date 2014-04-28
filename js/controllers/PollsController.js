@@ -118,8 +118,8 @@ pollingApp.controller('PollsController', function($window, $rootScope, $scope, $
                         console.log(data[poll].answers);
                         var qId = data[poll].id;
                         for (var i = 0; i < data[poll].answers.length; i++) {
-                            console.log(qId, data[poll].answers[i].text);
-                            console.log(cookie);
+                            //console.log(qId, data[poll].answers[i].text);
+                            //console.log(cookie);
                             if(cookie[qId] === data[poll].answers[i].text){
                                     console.info('FOUND', data[poll]);
                                     data[poll].answers[i].selectedLocal = true;
